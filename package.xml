@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>ros2_harwey</name>
+  <version>0.1.0</version>
+  <description>Autonomous agricultural robot navigation system</description>
+  <maintainer email="klasf.lundgren@gmail.com">klas</maintainer>
+  <license>MIT</license>
+</package>

@@ -1,0 +1,13 @@
+# ROS2 specific
+build/
+install/
+log/
+.colcon_build
+
+# Python
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+*.swp
