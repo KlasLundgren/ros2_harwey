@@ -9,6 +9,7 @@ from launch_ros.substitutions import FindPackageShare
 from ament_index_python.packages import get_package_share_directory
 
 
+
 def generate_launch_description():
     # Get the package directories
     navigation_core_dir = get_package_share_directory('navigation_core')
