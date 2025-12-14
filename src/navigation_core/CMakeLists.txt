@@ -50,6 +50,8 @@ install(TARGETS
 install(DIRECTORY
   launch
   config
+  description
+  worlds
   rviz
   DESTINATION share/${PROJECT_NAME}/
 )
