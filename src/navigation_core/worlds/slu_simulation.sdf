@@ -5,18 +5,14 @@
             <max_step_size>0.001</max_step_size>
             <real_time_factor>1.0</real_time_factor>
         </physics>
-        <plugin
-            filename="gz-sim-physics-system"
-            name="gz::sim::systems::Physics">
+        
+        <plugin name='gz::sim::systems::Physics' filename='gz-sim-physics-system'/>
+        <plugin name='gz::sim::systems::UserCommands' filename='gz-sim-user-commands-system'/>
+        <plugin name='gz::sim::systems::SceneBroadcaster' filename='gz-sim-scene-broadcaster-system'/>
+        <plugin name='gz::sim::systems::Sensors' filename='gz-sim-sensors-system'>
+            <render_engine>ogre2</render_engine>
         </plugin>
-        <plugin
-            filename="gz-sim-user-commands-system"
-            name="gz::sim::systems::UserCommands">
-        </plugin>
-        <plugin
-            filename="gz-sim-scene-broadcaster-system"
-            name="gz::sim::systems::SceneBroadcaster">
-        </plugin>
+        <plugin name='gz::sim::systems::Contact' filename='gz-sim-contact-system'/>
 
         <light type="directional" name="sun">
             <cast_shadows>true</cast_shadows>
