@@ -3,7 +3,12 @@
 
     <xacro:include filename="robot_core.xacro" />
 
-    <xacro:include filename="gazebo_control.xacro" />
+    <xacro:if value="$(arg ros2_control)">
+        <xacro:include filename="ros2_control.xacro" />
+    </xacro:if>
+    <xacro:unless value="$(arg ros2_control)">
+        <xacro:include filename="gazebo_control.xacro" />
+    </xacro:unless>
 
     <xacro:include filename="lidar.xacro" />
      
