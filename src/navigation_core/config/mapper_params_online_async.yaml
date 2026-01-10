@@ -14,16 +14,16 @@ slam_toolbox:
     map_frame: map
     base_frame: base_footprint
     scan_topic: /scan
-    mode: localization
+    mode: mapping
 
     # if you'd like to immediately start continuing a map at a given pose
     # or at the dock, but they are mutually exclusive, if pose is given
     # will use pose
-    map_file_name: /home/dev/dev_ws/my_map_serial
+    # map_file_name: /home/klas/ros2_harwey/SLU_sim_serial
     # map_start_pose: [0.0, 0.0, 0.0]
-    map_start_at_dock: true
+    # map_start_at_dock: true
 
-    debug_logging: false
+    debug_logging: true
     throttle_scans: 1
     transform_publish_period: 0.02 #if 0 never publishes odometry
     map_update_interval: 5.0
