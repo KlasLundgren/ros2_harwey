@@ -1,0 +1,2444 @@
+markers:
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_node_ids
+  id: 1
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 4.428812808990479
+      y: -0.12992599606513977
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '0'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_edge_ids
+  id: 1
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 5.2494064047932625
+      y: -0.11496299877762794
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 0.0
+    g: 1.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '22'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_node_ids
+  id: 2
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 6.07
+      y: 0.0
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '1'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_edge_ids
+  id: 2
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 6.810060568153858
+      y: -0.019649500027298927
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 0.0
+    g: 1.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '23'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_node_ids
+  id: 3
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 7.55012113571167
+      y: 0.060701001435518265
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '2'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_edge_ids
+  id: 3
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 8.441215105354786
+      y: 0.011329000815749168
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 0.0
+    g: 1.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '26'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_node_ids
+  id: 4
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 9.332309074401856
+      y: 0.06195700168609619
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '3'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_edge_ids
+  id: 4
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 10.370164223015308
+      y: 0.022054500877857208
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 0.0
+    g: 1.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '24'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_node_ids
+  id: 5
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 11.408019371032715
+      y: 0.08215200155973434
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '4'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_edge_ids
+  id: 5
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 13.338225193321705
+      y: 0.08705150336027145
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 0.0
+    g: 1.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '27'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_node_ids
+  id: 6
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 15.268431015014649
+      y: 0.19195100665092468
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '5'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_edge_ids
+  id: 6
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 15.301878280937672
+      y: -1.2452829666435719
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 0.0
+    g: 1.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '25'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_node_ids
+  id: 7
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 15.335325546264649
+      y: -2.58251690864563
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '6'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_edge_ids
+  id: 7
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 9.841074772179127
+      y: -2.6317439563572407
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 0.0
+    g: 1.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '28'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_node_ids
+  id: 8
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 4.346823997497559
+      y: -2.5809710025787354
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '7'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_edge_ids
+  id: 8
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 4.318827457726002
+      y: -3.786326576024294
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 0.0
+    g: 1.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '29'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_node_ids
+  id: 9
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 4.290830917358399
+      y: -4.891682147979736
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '8'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_edge_ids
+  id: 9
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 9.846640892326832
+      y: -4.810701180249453
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 0.0
+    g: 1.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '30'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_node_ids
+  id: 10
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 15.402450866699219
+      y: -4.629720211029053
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '9'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_edge_ids
+  id: 10
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 15.48368675261736
+      y: -5.611708212643862
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 0.0
+    g: 1.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '31'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_node_ids
+  id: 11
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 15.564922637939453
+      y: -6.493696212768555
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '10'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_edge_ids
+  id: 11
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 9.845339126884937
+      y: -6.697227049618959
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 0.0
+    g: 1.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '32'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_node_ids
+  id: 12
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 4.1257560920715335
+      y: -6.800757884979248
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '11'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_edge_ids
+  id: 12
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 4.086710520088673
+      y: -7.843250799924135
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 0.0
+    g: 1.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '33'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_node_ids
+  id: 13
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 4.047664947509766
+      y: -8.785743713378906
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '12'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_edge_ids
+  id: 13
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 9.847462482750416
+      y: -8.537709046155214
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 0.0
+    g: 1.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '34'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_node_ids
+  id: 14
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 15.64726001739502
+      y: -8.189674377441406
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '13'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_edge_ids
+  id: 14
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 15.667498894035816
+      y: -9.213426399976015
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 0.0
+    g: 1.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '35'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_node_ids
+  id: 15
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 15.687737770080567
+      y: -10.137178421020508
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '14'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_edge_ids
+  id: 15
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 9.865375824272633
+      y: -10.321494866162539
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 0.0
+    g: 1.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '36'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_node_ids
+  id: 16
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 4.043014116287232
+      y: -10.405811309814453
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '15'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_edge_ids
+  id: 16
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 3.962113566696644
+      y: -11.699829388409853
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 0.0
+    g: 1.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '37'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_node_ids
+  id: 17
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 3.8812130165100096
+      y: -12.893847465515137
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '16'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_edge_ids
+  id: 17
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 9.801683254539967
+      y: -12.735804367810488
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 0.0
+    g: 1.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '38'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_node_ids
+  id: 18
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 15.722153015136719
+      y: -12.477761268615723
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '17'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_edge_ids
+  id: 18
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 15.738115139305592
+      y: -13.55906705930829
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 0.0
+    g: 1.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '39'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_node_ids
+  id: 19
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 15.754077262878418
+      y: -14.540372848510742
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '18'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_edge_ids
+  id: 19
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 9.816957779228687
+      y: -14.866623688489199
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 0.0
+    g: 1.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '40'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_node_ids
+  id: 20
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 3.879838056564331
+      y: -15.092874526977539
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '19'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_edge_ids
+  id: 20
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 3.7250825837254524
+      y: -7.723772335797548
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 0.0
+    g: 1.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '41'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_node_ids
+  id: 21
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 3.570327110290527
+      y: -0.25466999411582947
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '20'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_edge_ids
+  id: 21
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: 1.7135201171040535
+      y: -0.28605349734425545
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 0.0
+    g: 1.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '42'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_node_ids
+  id: 22
+  type: 9
+  action: 0
+  pose:
+    position:
+      x: -0.14328699588775634
+      y: -0.2174369990825653
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points: []
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: '21'
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_edges
+  id: 0
+  type: 5
+  action: 0
+  pose:
+    position:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.05
+    y: 0.0
+    z: 0.0
+  color:
+    r: 0.0
+    g: 1.0
+    b: 0.0
+    a: 0.5
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points:
+  - x: 4.3588128089904785
+    y: -0.12992599606513977
+    z: 0.0
+  - x: 6.0
+    y: 0.0
+    z: 0.0
+  - x: 6.0
+    y: 0.0
+    z: 0.0
+  - x: 7.48012113571167
+    y: 0.060701001435518265
+    z: 0.0
+  - x: 7.48012113571167
+    y: 0.060701001435518265
+    z: 0.0
+  - x: 9.262309074401855
+    y: 0.06195700168609619
+    z: 0.0
+  - x: 9.262309074401855
+    y: 0.06195700168609619
+    z: 0.0
+  - x: 11.338019371032715
+    y: 0.08215200155973434
+    z: 0.0
+  - x: 11.338019371032715
+    y: 0.08215200155973434
+    z: 0.0
+  - x: 15.198431015014648
+    y: 0.19195100665092468
+    z: 0.0
+  - x: 15.198431015014648
+    y: 0.19195100665092468
+    z: 0.0
+  - x: 15.265325546264648
+    y: -2.58251690864563
+    z: 0.0
+  - x: 15.265325546264648
+    y: -2.58251690864563
+    z: 0.0
+  - x: 4.276823997497559
+    y: -2.5809710025787354
+    z: 0.0
+  - x: 4.276823997497559
+    y: -2.5809710025787354
+    z: 0.0
+  - x: 4.220830917358398
+    y: -4.891682147979736
+    z: 0.0
+  - x: 4.220830917358398
+    y: -4.891682147979736
+    z: 0.0
+  - x: 15.332450866699219
+    y: -4.629720211029053
+    z: 0.0
+  - x: 15.332450866699219
+    y: -4.629720211029053
+    z: 0.0
+  - x: 15.494922637939453
+    y: -6.493696212768555
+    z: 0.0
+  - x: 15.494922637939453
+    y: -6.493696212768555
+    z: 0.0
+  - x: 4.055756092071533
+    y: -6.800757884979248
+    z: 0.0
+  - x: 4.055756092071533
+    y: -6.800757884979248
+    z: 0.0
+  - x: 3.9776649475097656
+    y: -8.785743713378906
+    z: 0.0
+  - x: 3.9776649475097656
+    y: -8.785743713378906
+    z: 0.0
+  - x: 15.57726001739502
+    y: -8.189674377441406
+    z: 0.0
+  - x: 15.57726001739502
+    y: -8.189674377441406
+    z: 0.0
+  - x: 15.617737770080566
+    y: -10.137178421020508
+    z: 0.0
+  - x: 15.617737770080566
+    y: -10.137178421020508
+    z: 0.0
+  - x: 3.9730141162872314
+    y: -10.405811309814453
+    z: 0.0
+  - x: 3.9730141162872314
+    y: -10.405811309814453
+    z: 0.0
+  - x: 3.8112130165100098
+    y: -12.893847465515137
+    z: 0.0
+  - x: 3.8112130165100098
+    y: -12.893847465515137
+    z: 0.0
+  - x: 15.652153015136719
+    y: -12.477761268615723
+    z: 0.0
+  - x: 15.652153015136719
+    y: -12.477761268615723
+    z: 0.0
+  - x: 15.684077262878418
+    y: -14.540372848510742
+    z: 0.0
+  - x: 15.684077262878418
+    y: -14.540372848510742
+    z: 0.0
+  - x: 3.809838056564331
+    y: -15.092874526977539
+    z: 0.0
+  - x: 3.809838056564331
+    y: -15.092874526977539
+    z: 0.0
+  - x: 3.5003271102905273
+    y: -0.25466999411582947
+    z: 0.0
+  - x: 3.5003271102905273
+    y: -0.25466999411582947
+    z: 0.0
+  - x: -0.21328699588775635
+    y: -0.2174369990825653
+    z: 0.0
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: ''
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+- header:
+    stamp:
+      sec: 56
+      nanosec: 789000000
+    frame_id: map
+  ns: route_graph_nodes
+  id: 0
+  type: 7
+  action: 0
+  pose:
+    position:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
+  scale:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  color:
+    r: 1.0
+    g: 0.0
+    b: 0.0
+    a: 1.0
+  lifetime:
+    sec: 0
+    nanosec: 0
+  frame_locked: false
+  points:
+  - x: 4.3588128089904785
+    y: -0.12992599606513977
+    z: 0.0
+  - x: 6.0
+    y: 0.0
+    z: 0.0
+  - x: 7.48012113571167
+    y: 0.060701001435518265
+    z: 0.0
+  - x: 9.262309074401855
+    y: 0.06195700168609619
+    z: 0.0
+  - x: 11.338019371032715
+    y: 0.08215200155973434
+    z: 0.0
+  - x: 15.198431015014648
+    y: 0.19195100665092468
+    z: 0.0
+  - x: 15.265325546264648
+    y: -2.58251690864563
+    z: 0.0
+  - x: 4.276823997497559
+    y: -2.5809710025787354
+    z: 0.0
+  - x: 4.220830917358398
+    y: -4.891682147979736
+    z: 0.0
+  - x: 15.332450866699219
+    y: -4.629720211029053
+    z: 0.0
+  - x: 15.494922637939453
+    y: -6.493696212768555
+    z: 0.0
+  - x: 4.055756092071533
+    y: -6.800757884979248
+    z: 0.0
+  - x: 3.9776649475097656
+    y: -8.785743713378906
+    z: 0.0
+  - x: 15.57726001739502
+    y: -8.189674377441406
+    z: 0.0
+  - x: 15.617737770080566
+    y: -10.137178421020508
+    z: 0.0
+  - x: 3.9730141162872314
+    y: -10.405811309814453
+    z: 0.0
+  - x: 3.8112130165100098
+    y: -12.893847465515137
+    z: 0.0
+  - x: 15.652153015136719
+    y: -12.477761268615723
+    z: 0.0
+  - x: 15.684077262878418
+    y: -14.540372848510742
+    z: 0.0
+  - x: 3.809838056564331
+    y: -15.092874526977539
+    z: 0.0
+  - x: 3.5003271102905273
+    y: -0.25466999411582947
+    z: 0.0
+  - x: -0.21328699588775635
+    y: -0.2174369990825653
+    z: 0.0
+  colors: []
+  texture_resource: ''
+  texture:
+    header:
+      stamp:
+        sec: 0
+        nanosec: 0
+      frame_id: ''
+    format: ''
+    data: []
+  uv_coordinates: []
+  text: ''
+  mesh_resource: ''
+  mesh_file:
+    filename: ''
+    data: []
+  mesh_use_embedded_materials: false
+---
