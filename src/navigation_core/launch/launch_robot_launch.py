@@ -31,7 +31,7 @@ def generate_launch_description():
     lidar = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory('sllidar_ros2'),'launch','sllidar_s3_launch.py'
-                )]), launch_arguments={'frame_id': 'laser_frame', 'serial_port': 'ttyUSB0'}.items()
+                )]), launch_arguments={'frame_id': 'laser_frame', 'serial_port': '/dev/ttyUSB0'}.items()
     )
 
     # joystick = IncludeLaunchDescription(
