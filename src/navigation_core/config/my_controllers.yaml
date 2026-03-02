@@ -1,68 +1,95 @@
+# ==============================================================================
+# ros2_controllers configuration for DMKE DCSV differential drive robot
+# ==============================================================================
+#
+# Data flow:
+#   /cmd_vel → diff_drive_controller → velocity command (rad/s)
+#     → Cia402RobotSystem (scale_vel_to_dev) → drive units → CAN bus
+#   CAN bus → encoder counts → Cia402RobotSystem (scale_pos_from_dev) → rad
+#     → diff_drive_controller → /odom
+#
+# Max output shaft speed: 6.98 rad/s (2000 RPM motor / 30 gear ratio)
+# Max linear velocity: 6.98 * 0.2m = 1.40 m/s
+# Max angular velocity: 2 * 1.40 / 1.0m = 2.79 rad/s
+#
+# ==============================================================================
+
 controller_manager:
   ros__parameters:
-    update_rate: 30
-    use_sim_time: true
+    update_rate: 100  # Hz, matches SYNC period (10 ms)
 
-    diff_cont:
-      type: diff_drive_controller/DiffDriveController
-
-    joint_broad:
+    # Controller declarations
+    joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-diff_cont:
+    diffbot_base_controller:
+      type: diff_drive_controller/DiffDriveController
+
+    robot_controller:
+      type: canopen_ros2_controllers/Cia402RobotController
+
+# ==============================================================================
+# Robot controller: handles CiA 402 state machine (init, enable, mode switch)
+# ==============================================================================
+robot_controller:
   ros__parameters:
+    joints:
+      - left_wheel_joint
+      - right_wheel_joint
+    operation_mode: 3           # Velocity mode
+    command_poll_freq: 10       # Hz, frequency to poll for command feedback
 
-    publish_rate: 50.0
+# ==============================================================================
+# Diff drive controller: /cmd_vel → wheel velocities, encoder → /odom
+# ==============================================================================
+diffbot_base_controller:
+  ros__parameters:
+    left_wheel_names: ["left_wheel_joint"]
+    right_wheel_names: ["right_wheel_joint"]
 
+    wheel_separation: 1.0       # meters (center to center)
+    wheel_radius: 0.2           # meters (output shaft wheel)
+
+    # Odometry configuration
+    odom_frame_id: odom
     base_frame_id: base_link
+    enable_odom_tf: true
+    publish_odom: true
+    publish_wheel_data: true
 
-    left_wheel_names: ['left_wheel_joint']
-    right_wheel_names: ['right_wheel_joint']
-    wheel_separation: 0.297
-    wheel_radius: 0.033
+    # Use encoder feedback for odometry (not open loop)
+    position_feedback: true     # WHY: use position (counts) for more accurate odom
+    open_loop: false            # WHY: we have encoder feedback, use it
 
+    # Velocity command timeout - stop if no cmd_vel for 0.5s
+    cmd_vel_timeout: 0.5
+
+    # Use unstamped velocity (compatible with teleop_twist_keyboard)
     use_stamped_vel: false
 
-    # open_loop: false    
+    # Velocity and acceleration limits
+    linear:
+      x:
+        has_velocity_limits: true
+        max_velocity: 1.0       # m/s (conservative, max is ~1.4)
+        min_velocity: -1.0
+        has_acceleration_limits: true
+        max_acceleration: 0.5   # m/s²
+        max_deceleration: -1.0  # m/s² (brake harder than accel)
 
-    # wheels_per_side: x
-    # wheel_separation_multiplier: x
-    # left_wheel_radius_multiplier: x
-    # right_wheel_radius_multiplier: x
+    angular:
+      z:
+        has_velocity_limits: true
+        max_velocity: 2.0       # rad/s (conservative, max is ~2.8)
+        min_velocity: -2.0
+        has_acceleration_limits: true
+        max_acceleration: 1.0   # rad/s²
+        max_deceleration: -2.0
 
-    # odom_frame_id: x
-    # pose_covariance_diagonal: x
-    # twist_covariance_diagonal: x
-    # open_loop: x
-    # enable_odom_tf: x
+    # Odometry covariance (tune after testing)
+    pose_covariance_diagonal: [0.001, 0.001, 0.0, 0.0, 0.0, 0.01]
+    twist_covariance_diagonal: [0.001, 0.001, 0.0, 0.0, 0.0, 0.01]
 
-    # cmd_vel_timeout: x
-    # publish_limited_velocity: x
-    # velocity_rolling_window_size: x
-    
-
-    # linear.x.has_velocity_limits: false
-    # linear.x.has_acceleration_limits: false
-    # linear.x.has_jerk_limits: false
-    # linear.x.max_velocity: NAN
-    # linear.x.min_velocity: NAN
-    # linear.x.max_acceleration: NAN
-    # linear.x.min_acceleration: NAN
-    # linear.x.max_jerk: NAN
-    # linear.x.min_jerk: NAN
-
-    # angular.z.has_velocity_limits: false
-    # angular.z.has_acceleration_limits: false
-    # angular.z.has_jerk_limits: false
-    # angular.z.max_velocity: NAN
-    # angular.z.min_velocity: NAN
-    # angular.z.max_acceleration: NAN
-    # angular.z.min_acceleration: NAN
-    # angular.z.max_jerk: NAN
-    # angular.z.min_jerk: NAN
-
-
-
-
-# joint_broad:
-#   ros__parameters:
+    velocity_rolling_window_size: 10
+    publish_rate: 50.0          # Hz for odom publishing
+    publish_limited_velocity: true

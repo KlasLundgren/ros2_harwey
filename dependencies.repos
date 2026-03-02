@@ -1,0 +1,5 @@
+repositories:
+  ros2_canopen:
+    type: git
+    url: https://github.com/ros-industrial/ros2_canopen.git
+    version: master

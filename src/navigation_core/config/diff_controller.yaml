@@ -1,0 +1,53 @@
+# diffbot_controllers.yaml
+# Controller configuration for DMKE differential drive robot.
+#
+# IMPORTANT: Measure and update wheel_separation and wheel_radius
+# for your actual robot chassis. These values are placeholders.
+
+controller_manager:
+  ros__parameters:
+    update_rate: 50  # Hz. WHY 50 not 100: SDO round-trips take ~1-2ms each,
+                     # 4 reads + 2 writes per cycle = ~8-12ms. 50Hz (20ms) gives
+                     # comfortable margin. Increase to 100Hz if you switch to PDO.
+
+    diffbot_base_controller:
+      type: diff_drive_controller/DiffDriveController
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+
+diffbot_base_controller:
+  ros__parameters:
+    # Joint names must match URDF joint names exactly
+    left_wheel_names: ["left_wheel_joint"]
+    right_wheel_names: ["right_wheel_joint"]
+
+    # WHY these matter: diff_drive_controller converts cmd_vel (m/s, rad/s)
+    # to per-wheel rad/s using these dimensions. Wrong values = wrong odometry.
+    # MEASURE THESE ON YOUR ROBOT.
+    wheel_separation: 0.994    # meters, center-to-center between wheels
+    wheel_radius: 0.25       # meters, wheel radius after gearbox output
+
+    # Odometry
+    publish_rate: 50.0        # Match update_rate
+    odom_frame_id: "odom"
+    base_frame_id: "base_link"
+    pose_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
+    twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
+    open_loop: false          # WHY false: we have encoder feedback, use it
+
+    # Velocity limits
+    # WHY these limits: D80M-03230 rated at 2000 RPM, with 1:30 gearbox
+    # that's ~67 RPM at wheel = ~7 rad/s. Set conservative limit below max.
+    linear.x.has_velocity_limits: true
+    linear.x.max_velocity: 1.0         # m/s
+    linear.x.has_acceleration_limits: true
+    linear.x.max_acceleration: 0.5     # m/s^2
+    angular.z.has_velocity_limits: true
+    angular.z.max_velocity: 2.0        # rad/s
+    angular.z.has_acceleration_limits: true
+    angular.z.max_acceleration: 1.0    # rad/s^2
+
+    # Command timeout: if no cmd_vel received for this long, zero the wheels
+    cmd_vel_timeout: 0.5  # seconds

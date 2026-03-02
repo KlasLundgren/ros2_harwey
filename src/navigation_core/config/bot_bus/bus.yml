@@ -1,0 +1,146 @@
+# ==============================================================================
+# ros2_canopen bus configuration for DMKE DCSV differential drive robot
+# ==============================================================================
+#
+# Hardware:
+#   2x DCSV brushless servo drives (CiA 402), D80M-03230 600W PMSM,
+#   RV50-30 worm gearboxes (1:30), 2500 PPR encoder (x4 = 10,000 counts/rev)
+#
+# Unit conversion (output shaft frame):
+#   Position: 300,000 counts/output rev → 47,746.48 counts/rad
+#   Velocity: 0.1 counts/s resolution → 477,464.83 drive units per rad/s
+#
+# ==============================================================================
+
+options:
+  dcf_path: "@BUS_CONFIG_PATH@"
+
+master:
+  node_id: 126                # WHY: avoid collision with slave IDs 1-2, stay under 128
+  driver: "ros2_canopen::MasterDriver"
+  package: "canopen_master_driver"
+  sync_period: 10000          # 10 ms SYNC interval (100 Hz control loop)
+
+left_wheel_joint:
+  node_id: 1
+  dcf: "dcsv_drive.eds"
+  driver: "ros2_canopen::Cia402Driver"   # WHY: non-lifecycle required for ros2_control
+  package: "canopen_402_driver"
+  period: 10                  # 10 ms update period, matches SYNC
+  polling: false              # WHY: timer-based update avoids requiring all data in PDO
+  heartbeat_producer: 1000    # 1 s heartbeat for node monitoring
+  revision_number: 0
+  # --- Unit scaling for ros2_control interface ---
+  # ros2_control works in SI units (rad, rad/s)
+  # Drive works in counts and 0.1 counts/s
+  scale_pos_to_dev: 47746.48       # rad → counts (output shaft)
+  scale_pos_from_dev: 0.0000209440 # counts → rad (output shaft)
+  scale_vel_to_dev: 477464.83      # rad/s → drive velocity units (0.1 counts/s)
+  scale_vel_from_dev: 0.0000020944 # drive velocity units → rad/s
+  # --- CiA 402 mode configuration ---
+  velocity_mode: 3            # Profile Velocity mode for velocity interface
+  position_mode: 1            # Profile Position mode for position interface
+  sdo:
+    # Mode of operation: velocity mode (3) as default
+    - {index: 0x6060, sub_index: 0, value: 3}
+    # Profile acceleration: 5000 (= 50,000 counts/s²)
+    - {index: 0x6083, sub_index: 0, value: 5000}
+    # Profile deceleration: 5000 (= 50,000 counts/s²)
+    - {index: 0x6084, sub_index: 0, value: 5000}
+    # Quick stop deceleration: 10000 (= 100,000 counts/s²)
+    - {index: 0x6085, sub_index: 0, value: 10000}
+    # Homing method: 0 (no homing required for diff drive)
+    - {index: 0x6098, sub_index: 0, value: 0}
+  tpdo:
+    # TPDO1: status + mode display
+    1:
+      enabled: true
+      cob_id: "auto"
+      transmission: 0x01
+      mapping:
+        - {index: 0x6041, sub_index: 0}   # Statusword (16-bit)
+        - {index: 0x6061, sub_index: 0}   # Mode of operation display (8-bit)
+    # TPDO2: encoder feedback (position + velocity)
+    2:
+      enabled: true
+      cob_id: "auto"
+      transmission: 0x01
+      mapping:
+        - {index: 0x6064, sub_index: 0}   # Position actual value (32-bit)
+        - {index: 0x606C, sub_index: 0}   # Velocity actual value (32-bit)
+  rpdo:
+    # RPDO1: control word + mode
+    1:
+      enabled: true
+      cob_id: "auto"
+      mapping:
+        - {index: 0x6040, sub_index: 0}   # Controlword (16-bit)
+        - {index: 0x6060, sub_index: 0}   # Mode of operation (8-bit)
+    # RPDO2: target velocity
+    2:
+      enabled: true
+      cob_id: "auto"
+      mapping:
+        - {index: 0x60FF, sub_index: 0}   # Target velocity (32-bit)
+
+right_wheel_joint:
+  node_id: 2
+  dcf: "dcsv_drive.eds"
+  driver: "ros2_canopen::Cia402Driver"   # WHY: non-lifecycle required for ros2_control
+  package: "canopen_402_driver"
+  period: 10                  # 10 ms update period, matches SYNC
+  polling: false              # WHY: timer-based update avoids requiring all data in PDO
+  heartbeat_producer: 1000    # 1 s heartbeat for node monitoring
+  revision_number: 0
+  # --- Unit scaling for ros2_control interface ---
+  # ros2_control works in SI units (rad, rad/s)
+  # Drive works in counts and 0.1 counts/s
+  scale_pos_to_dev: 47746.48       # rad → counts (output shaft)
+  scale_pos_from_dev: 0.0000209440 # counts → rad (output shaft)
+  scale_vel_to_dev: 477464.83      # rad/s → drive velocity units (0.1 counts/s)
+  scale_vel_from_dev: 0.0000020944 # drive velocity units → rad/s
+  # --- CiA 402 mode configuration ---
+  velocity_mode: 3            # Profile Velocity mode for velocity interface
+  position_mode: 1            # Profile Position mode for position interface
+  sdo:
+    # Mode of operation: velocity mode (3) as default
+    - {index: 0x6060, sub_index: 0, value: 3}
+    # Profile acceleration: 5000 (= 50,000 counts/s²)
+    - {index: 0x6083, sub_index: 0, value: 5000}
+    # Profile deceleration: 5000 (= 50,000 counts/s²)
+    - {index: 0x6084, sub_index: 0, value: 5000}
+    # Quick stop deceleration: 10000 (= 100,000 counts/s²)
+    - {index: 0x6085, sub_index: 0, value: 10000}
+    # Homing method: 0 (no homing required for diff drive)
+    - {index: 0x6098, sub_index: 0, value: 0}
+  tpdo:
+    # TPDO1: status + mode display
+    1:
+      enabled: true
+      cob_id: "auto"
+      transmission: 0x01
+      mapping:
+        - {index: 0x6041, sub_index: 0}   # Statusword (16-bit)
+        - {index: 0x6061, sub_index: 0}   # Mode of operation display (8-bit)
+    # TPDO2: encoder feedback (position + velocity)
+    2:
+      enabled: true
+      cob_id: "auto"
+      transmission: 0x01
+      mapping:
+        - {index: 0x6064, sub_index: 0}   # Position actual value (32-bit)
+        - {index: 0x606C, sub_index: 0}   # Velocity actual value (32-bit)
+  rpdo:
+    # RPDO1: control word + mode
+    1:
+      enabled: true
+      cob_id: "auto"
+      mapping:
+        - {index: 0x6040, sub_index: 0}   # Controlword (16-bit)
+        - {index: 0x6060, sub_index: 0}   # Mode of operation (8-bit)
+    # RPDO2: target velocity
+    2:
+      enabled: true
+      cob_id: "auto"
+      mapping:
+        - {index: 0x60FF, sub_index: 0}   # Target velocity (32-bit)

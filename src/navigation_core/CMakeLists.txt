@@ -18,6 +18,13 @@ find_package(pcl_conversions REQUIRED)
 find_package(pcl_ros REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(PCL REQUIRED)
+find_package(lely_core_libraries REQUIRED)
+find_package(hardware_interface REQUIRED)
+find_package(pluginlib REQUIRED)
+find_package(rclcpp_lifecycle REQUIRED)
+
+# Generate master.dcf and master.bin from bus.yml + EDS files
+generate_dcf(bot_bus)
 
 include_directories(
   include
@@ -25,8 +32,16 @@ include_directories(
   ${PCL_INCLUDE_DIRS}
 )
 
-add_executable(sensor_fusion_node src/sensor_fusion_node.cpp)
-ament_target_dependencies(sensor_fusion_node
+# Build the hardware interface shared library
+add_library(dmke_can_hw_interface SHARED
+  src/dmke_can_hw_interface.cpp
+)
+target_include_directories(dmke_can_hw_interface PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
+)
+
+ament_target_dependencies(dmke_can_hw_interface
   rclcpp
   std_msgs
   sensor_msgs
@@ -36,15 +51,9 @@ ament_target_dependencies(sensor_fusion_node
   tf2_ros
   pcl_conversions
   pcl_ros
-)
-target_link_libraries(sensor_fusion_node
-  ${PCL_LIBRARIES}
-  Eigen3::Eigen
-)
-
-install(TARGETS
-  sensor_fusion_node
-  DESTINATION lib/${PROJECT_NAME}
+  hardware_interface
+  pluginlib
+  rclcpp_lifecycle
 )
 
 install(DIRECTORY
@@ -54,6 +63,23 @@ install(DIRECTORY
   worlds
   rviz
   DESTINATION share/${PROJECT_NAME}/
+)
+
+# Register the plugin with pluginlib
+# WHY this macro: it writes the plugin path into the ament index so
+# controller_manager can find it at runtime by class name.
+pluginlib_export_plugin_description_file(hardware_interface dmke_can_hw_plugin.xml)
+
+# Install the library
+install(TARGETS dmke_can_hw_interface
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
+)
+
+# Install config, launch, urdf files
+install(DIRECTORY config launch description
+  DESTINATION share/${PROJECT_NAME}
 )
 
 if(BUILD_TESTING)

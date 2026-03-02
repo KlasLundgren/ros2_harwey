@@ -1,0 +1,14 @@
+<!-- dmke_can_hw_plugin.xml -->
+<!-- WHY this file: pluginlib uses this to resolve the class name
+     "dmke_can_hw/DmkeCanHwInterface" to the actual shared library.
+     Referenced in CMakeLists.txt via pluginlib_export_plugin_description_file(). -->
+<library path="dmke_can_hw_interface">
+  <class
+    name="dmke_can_hw/DmkeCanHwInterface"
+    type="dmke_can_hw::DmkeCanHwInterface"
+    base_class_type="hardware_interface::SystemInterface">
+    <description>
+      Direct SocketCAN hardware interface for 2x DMKE DCSV CiA 402 drives.
+    </description>
+  </class>
+</library>

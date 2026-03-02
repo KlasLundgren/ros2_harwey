@@ -1,35 +1,36 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-
     
-    <ros2_control name="GazeboSimSystem" type="system">
+    <!-- dmke_ros2_control.urdf.xacro -->
+    <!-- Include this in your main robot URDF/xacro.
+        Replaces the old ros2_canopen RobotSystem hardware block.
+
+        WHY inline parameters instead of separate YAML:
+        For 5 parameters, a separate config file adds a file-management
+        dependency with zero benefit. If you add more drives, move to YAML. -->
+
+    <ros2_control name="DmkeCanSystem" type="system">
         <hardware>
-            <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+            <plugin>dmke_can_hw/DmkeCanHwInterface</plugin>
+            <!-- CAN interface name. Must be up before launching:
+                sudo ip link set can0 up type can bitrate 1000000 -->
+            <param name="can_interface">can0</param>
+            <!-- CAN node IDs matching drive DIP switch / DCH config -->
+            <param name="left_node_id">1</param>
+            <param name="right_node_id">2</param>
         </hardware>
+
         <joint name="left_wheel_joint">
-            <command_interface name="velocity">
-                <param name="min">-10</param>
-                <param name="max">10</param>
-            </command_interface>
-            <state_interface name="velocity"/>
+            <command_interface name="velocity"/>
             <state_interface name="position"/>
+            <state_interface name="velocity"/>
         </joint>
+
         <joint name="right_wheel_joint">
-            <command_interface name="velocity">
-                <param name="min">-10</param>
-                <param name="max">10</param>
-            </command_interface>
-            <state_interface name="velocity"/>
+            <command_interface name="velocity"/>
             <state_interface name="position"/>
+            <state_interface name="velocity"/>
         </joint>
     </ros2_control>
-    
-
-    <gazebo>
-        <plugin name="gz_ros2_control::GazeboSimROS2ControlPlugin" filename="libgz_ros2_control-system.so">
-            <parameters>$(find navigation_core)/config/my_controllers.yaml</parameters>
-            <!-- <parameters>$(find navigation_core)/config/gaz_ros2_ctl_use_sim.yaml</parameters> -->
-        </plugin>
-    </gazebo>
 
 </robot>

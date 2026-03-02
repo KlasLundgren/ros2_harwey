@@ -19,6 +19,31 @@
   <depend>pcl_conversions</depend>
   <depend>pcl_ros</depend>
   <depend>eigen</depend>
+  <depend>rclcpp_lifecycle</depend>
+  <depend>robot_state_publisher</depend>
+
+    <!-- CANopen stack -->
+  <depend>canopen</depend>
+  <depend>canopen_core</depend>
+  <depend>canopen_master_driver</depend>
+  <depend>canopen_402_driver</depend>
+  <depend>canopen_interfaces</depend>
+  <depend>canopen_ros2_control</depend>
+  <depend>canopen_ros2_controllers</depend>
+  <depend>lely_core_libraries</depend>
+  <depend>pluginlib</depend>
+
+  <!-- ros2_control -->
+  <depend>controller_manager</depend>
+  <depend>diff_drive_controller</depend>
+  <depend>joint_state_broadcaster</depend>
+  <depend>robot_state_publisher</depend>
+  <depend>hardware_interface</depend>
+
+
+  <!-- URDF -->
+  <depend>xacro</depend>
+  <depend>urdf</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
