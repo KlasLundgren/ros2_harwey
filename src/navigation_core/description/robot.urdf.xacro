@@ -3,12 +3,15 @@
 
     <xacro:include filename="robot_core.xacro" />
 
-    <!-- <xacro:if value="$(arg use_sim_time)"> -->
-        <!-- <xacro:include filename="gazebo_control.xacro" /> -->
-    <!-- </xacro:if> -->
-    <!-- <xacro:unless value="$(arg use_sim_time)"> -->
-    <xacro:include filename="ros2_control.xacro" />
-    <!-- </xacro:unless> -->
+    <xacro:arg name="sim_mode" default="false"/>
+
+    <xacro:if value="$(arg sim_mode)"> 
+        <xacro:include filename="gazebo_control.xacro" />
+    </xacro:if>
+
+    <xacro:unless value="$(arg sim_mode)">
+        <xacro:include filename="ros2_control.xacro" />
+    </xacro:unless>
 
 
     <xacro:include filename="lidar.xacro" />

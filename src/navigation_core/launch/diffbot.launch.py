@@ -36,7 +36,7 @@ def generate_launch_description():
     # Replace the current robot_description dict with:
     robot_description = {
         'robot_description': ParameterValue(
-            Command(['xacro ', os.path.join(pkg_share, 'description', 'robot.urdf.xacro')]),
+            robot_description_content,
             value_type=str
         )
     }
