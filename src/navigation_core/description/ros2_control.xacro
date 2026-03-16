@@ -10,27 +10,41 @@
         dependency with zero benefit. If you add more drives, move to YAML. -->
 
     <ros2_control name="DmkeCanSystem" type="system">
-        <hardware>
-            <plugin>dmke_can_hw/DmkeCanHwInterface</plugin>
-            <!-- CAN interface name. Must be up before launching:
-                sudo ip link set can0 up type can bitrate 1000000 -->
-            <param name="can_interface">can0</param>
-            <!-- CAN node IDs matching drive DIP switch / DCH config -->
-            <param name="left_node_id">1</param>
-            <param name="right_node_id">2</param>
-        </hardware>
+    <hardware>
+        <plugin>dmke_can_hw/DmkeCanHwInterface</plugin>
+        <!-- CAN interface name. Must be up before launching:
+            sudo ip link set can0 up type can bitrate 1000000 -->
+        <param name="can_interface">can0</param>
+        <!-- CAN node IDs matching drive DIP switch / DCH config -->
+        <param name="left_node_id">1</param>
+        <param name="right_node_id">2</param>
+        <!-- Speed loop ramp limits (unit: 1000 counts/s²).
+            Limits how fast the drive ramps to target velocity.
+            Lower = gentler on batteries, higher = snappier response.
+            Start low and increase until undervoltage faults appear, then back off. -->
+        <param name="speed_accel">1000</param>
+        <param name="speed_decel">1000</param>
+        <param name="speed_estop_decel">10000</param>
+        <!-- Following error protection. The drive faults if actual position deviates
+            from target by more than 'window' counts for longer than 'timeout' ms.
+            Factory defaults (2500 counts / 10ms) are too tight for a loaded robot.
+            Keep these wide enough for normal driving but tight enough to catch
+            collisions. 50000 counts ≈ 36° at wheel. 500ms = time before fault. -->
+        <param name="following_error_window">100000</param>
+        <param name="following_error_timeout">1000</param>
+    </hardware>
 
-        <joint name="left_wheel_joint">
-            <command_interface name="velocity"/>
-            <state_interface name="position"/>
-            <state_interface name="velocity"/>
-        </joint>
+    <joint name="left_wheel_joint">
+        <command_interface name="velocity"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
 
-        <joint name="right_wheel_joint">
-            <command_interface name="velocity"/>
-            <state_interface name="position"/>
-            <state_interface name="velocity"/>
-        </joint>
+    <joint name="right_wheel_joint">
+        <command_interface name="velocity"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
     </ros2_control>
 
 </robot>

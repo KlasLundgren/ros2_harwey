@@ -56,6 +56,22 @@ static constexpr uint16_t OD_TARGET_VELOCITY   = 0x60FF;
 static constexpr uint16_t OD_ACTUAL_POSITION   = 0x6064;
 static constexpr uint16_t OD_ACTUAL_VELOCITY   = 0x6069;  // DMKE-specific, not CiA 402 standard 0x606C
 
+// Speed loop ramp registers (DMKE-specific)
+// WHY these: without acceleration limits the drive jumps to target velocity
+// instantly, pulling max current and causing undervoltage on weak supplies.
+// Unit: 1000 counts/s². Value of 5000 = 5,000,000 counts/s².
+static constexpr uint16_t OD_SPEED_ACCEL      = 0x2100;
+static constexpr uint16_t OD_SPEED_DECEL      = 0x2101;
+static constexpr uint16_t OD_SPEED_ESTOP_DECEL = 0x2102;
+
+// Following error registers (CiA 402)
+// WHY these: the drive faults if actual position deviates from commanded position
+// by more than the window value for longer than the window time. Factory defaults
+// are very tight (2500 counts / 10ms), causing faults under normal driving load.
+// Widening these prevents nuisance faults while still protecting against collisions.
+static constexpr uint16_t OD_FOLLOWING_ERR_WINDOW      = 0x6067;  // 4 bytes, counts
+static constexpr uint16_t OD_FOLLOWING_ERR_WINDOW_TIME = 0x6068;  // 2 bytes, ms
+
 // CiA 402 controlword values
 // WHY 0x0F for enable: the DMKE drives accept a single-step enable
 // (skip ready-to-switch-on -> switched-on transitions). Tested and confirmed.
@@ -77,9 +93,8 @@ static constexpr uint8_t MODE_VELOCITY = 0x03;
 
 // Unit conversion constants
 // WHY these values: derived from encoder spec (2500 PPR = 10000 counts/rev)
-// and gearbox ratio (1:30). Cross-checked against tested cansend values
-// where 100 motor RPM = 166666 drive units.
-static constexpr double COUNTS_PER_WHEEL_RAD = 79577.47;       // 10000 * 50 / (2*pi)
+// and gearbox ratio (1:50). Cross-checked against timed wheel revolution test.
+static constexpr double COUNTS_PER_WHEEL_RAD = 79577.47;        // 10000 * 50 / (2*pi)
 static constexpr double DRIVE_UNITS_PER_WHEEL_RAD_S = 795774.72; // 10000/60 * 10000 * 50 / (2*pi)
 
 // Timeouts
@@ -115,6 +130,29 @@ public:
     }
     if (info.hardware_parameters.count("right_node_id")) {
       node_ids_[1] = std::stoi(info.hardware_parameters.at("right_node_id"));
+    }
+
+    // Read speed loop ramp parameters. Unit: 1000 counts/s².
+    // WHY configurable: the right value depends on power supply capacity and
+    // mechanical load. Too low = sluggish response. Too high = current spike
+    // and undervoltage fault on weak batteries.
+    if (info.hardware_parameters.count("speed_accel")) {
+      speed_accel_ = std::stoi(info.hardware_parameters.at("speed_accel"));
+    }
+    if (info.hardware_parameters.count("speed_decel")) {
+      speed_decel_ = std::stoi(info.hardware_parameters.at("speed_decel"));
+    }
+    if (info.hardware_parameters.count("speed_estop_decel")) {
+      speed_estop_decel_ = std::stoi(info.hardware_parameters.at("speed_estop_decel"));
+    }
+
+    // Following error window: how far actual position can deviate from target (counts)
+    // and for how long (ms) before the drive faults.
+    if (info.hardware_parameters.count("following_error_window")) {
+      following_err_window_ = std::stoi(info.hardware_parameters.at("following_error_window"));
+    }
+    if (info.hardware_parameters.count("following_error_timeout")) {
+      following_err_timeout_ = std::stoi(info.hardware_parameters.at("following_error_timeout"));
     }
 
     // Validate joint count
@@ -568,6 +606,28 @@ private:
       return false;
     }
 
+    // 3b. Set speed loop acceleration/deceleration ramps
+    // WHY here: must be set before enabling operation. Limits inrush current
+    // when velocity commands change, preventing undervoltage faults.
+    sdo_write_i32(node_id, OD_SPEED_ACCEL, 0, speed_accel_);
+    sdo_write_i32(node_id, OD_SPEED_DECEL, 0, speed_decel_);
+    sdo_write_i32(node_id, OD_SPEED_ESTOP_DECEL, 0, speed_estop_decel_);
+    RCLCPP_INFO(rclcpp::get_logger("DmkeCanHwInterface"),
+      "Node %d ramps set: accel=%d, decel=%d, estop=%d (x1000 counts/s²)",
+      node_id, speed_accel_, speed_decel_, speed_estop_decel_);
+
+    // 3c. Set following error window and timeout
+    // WHY here: must be set before enabling operation. Factory defaults
+    // (2500 counts / 10ms) are too tight for a loaded robot. A stall or
+    // heavy load trips the fault instantly. Wider window allows normal
+    // driving while still catching real collisions.
+    sdo_write_i32(node_id, OD_FOLLOWING_ERR_WINDOW, 0, following_err_window_);
+    sdo_write_u16(node_id, OD_FOLLOWING_ERR_WINDOW_TIME, 0,
+      static_cast<uint16_t>(following_err_timeout_));
+    RCLCPP_INFO(rclcpp::get_logger("DmkeCanHwInterface"),
+      "Node %d following error: window=%d counts, timeout=%d ms",
+      node_id, following_err_window_, following_err_timeout_);
+
     // 4. Shutdown (transition to Ready To Switch On)
     sdo_write_u16(node_id, OD_CONTROLWORD, 0, CW_SHUTDOWN);
     usleep(20000);  // 20ms
@@ -605,6 +665,20 @@ private:
   int sock_ = -1;
   std::string can_interface_ = "can0";
   int node_ids_[2] = {1, 2};  // CAN node IDs, left=1, right=2
+
+  // Speed loop ramp settings (unit: 1000 counts/s²)
+  // Default 5000 = moderate ramp. Increase for snappier response,
+  // decrease if undervoltage faults occur under load.
+  int speed_accel_ = 5000;
+  int speed_decel_ = 5000;
+  int speed_estop_decel_ = 10000;  // E-stop should be faster than normal decel
+
+  // Following error protection
+  // Default 50000 counts = ~5 motor revolutions = ~36 degrees at wheel.
+  // Default 500ms = half second before faulting.
+  // Keeps collision protection while tolerating normal driving load.
+  int following_err_window_ = 50000;   // counts
+  int following_err_timeout_ = 500;    // ms
 
   // ros2_control state/command storage
   double hw_positions_[2]  = {0.0, 0.0};
