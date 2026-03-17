@@ -24,7 +24,7 @@ Navigation and control system for a differential-drive robot designed for autono
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                         Nav2 Stack                              │
-│  (AMCL / Cartographer, MPPI Controller, NavFn Planner, BT)     │
+│  (AMCL / Cartographer, MPPI Controller, NavFn Planner, BT)      │
 │                            │                                    │
 │                       /cmd_vel                                  │
 │                            ▼                                    │
@@ -36,7 +36,7 @@ Navigation and control system for a differential-drive robot designed for autono
 │          ┌─────────────────────────────┐                        │
 │          │   DmkeCanHwInterface        │                        │
 │          │   (ros2_control plugin)     │                        │
-│          │   CiA 402 over SocketCAN   │                        │
+│          │   CiA 402 over SocketCAN    │                        │
 │          └──────────┬──────────────────┘                        │
 │                     │ CAN bus (1 Mbit/s)                        │
 │              ┌──────┴──────┐                                    │
@@ -74,8 +74,8 @@ Sensors:
 | Motor drives | 2x DMKE DCSV, CiA 402 profile |
 | CAN bus | 1 Mbit/s, standard frame format |
 | CAN node IDs | Left = 1, Right = 2 |
-| Max motor speed | 2000 RPM |
-| Max wheel speed | ~6.3 rad/s (after gearbox) |
+| Max motor speed | 3000 RPM |
+| Max wheel speed | ~6.28 rad/s (3000 RPM / 50 gear ratio) |
 
 ### Chassis
 
@@ -211,8 +211,8 @@ colcon build --packages-select navigation_core
 | `update_rate` | 50 Hz | Control loop rate. Set to 50 (not 100) because SDO round-trips take ~1-2ms each, and 4 reads + 2 writes per cycle = ~8-12ms |
 | `wheel_separation` | 0.994 m | Center-to-center distance between wheels |
 | `wheel_radius` | 0.25 m | Wheel radius at gearbox output |
-| `linear.x.max_velocity` | 1.0 m/s | Conservative limit (theoretical max ~1.4 m/s) |
-| `angular.z.max_velocity` | 2.0 rad/s | Conservative limit (theoretical max ~2.8 rad/s) |
+| `linear.x.max_velocity` | 1.0 m/s | Conservative limit (theoretical max ~1.57 m/s) |
+| `angular.z.max_velocity` | 2.0 rad/s | Conservative limit (theoretical max ~3.16 rad/s) |
 | `cmd_vel_timeout` | 0.5 s | Wheels stop if no command received |
 | `open_loop` | false | Uses encoder feedback for odometry |
 
