@@ -103,7 +103,7 @@ ROS2 Humble project for an autonomous differential-drive agricultural robot (Ras
 - Ruthlessly iterate on these lessons until mistake rate drops
 - Review lessons at session start for relevant project
 
-- ### Verification Before Done
+### Verification Before Done
 - Never mark a task complete without proving it works
 - Diff behavior between main and your changes when relevant
 - Ask yourself: "Would a staff engineer approve this?"
