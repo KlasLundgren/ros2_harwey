@@ -99,9 +99,18 @@ def generate_launch_description():
         ],
     )
 
+    twist_mux_params = os.path.join(pkg_share,'config','twist_mux.yaml')
+    twist_mux = Node(
+        package="twist_mux",
+        executable="twist_mux",
+        parameters=[twist_mux_params],
+        remappings=[('/cmd_vel_out','/diffbot_base_controller/cmd_vel')]
+    )
+
     return LaunchDescription([
         control_node,
         robot_state_publisher,
         diff_drive_spawner,
         joint_state_spawner,
+        twist_mux,
     ])

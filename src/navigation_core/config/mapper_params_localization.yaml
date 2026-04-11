@@ -15,7 +15,7 @@ slam_toolbox:
     mode: localization
 
     # if you'd like to start localizing on bringup in a map and pose
-    map_file_name: /home/klas/ros2_harwey/SLU_sim_serial
+    map_file_name: /home/klas/ros2_harwey/SLU_REAL
     #map_start_pose: [5.0, 1.0, 0.0]
 
     debug_logging: true
