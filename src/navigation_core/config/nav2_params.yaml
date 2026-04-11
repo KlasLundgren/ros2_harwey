@@ -44,7 +44,7 @@ bt_navigator:
     robot_base_frame: base_link
     odom_topic: /odom
     bt_loop_duration: 10
-    default_server_timeout: 20
+    default_server_timeout: 2000
     wait_for_service_timeout: 1000
     action_server_result_timeout: 900.0
     navigators: ["navigate_to_pose", "navigate_through_poses"]
@@ -97,9 +97,9 @@ controller_server:
       yaw_goal_tolerance: 0.25
     FollowPath:
       plugin: "nav2_mppi_controller::MPPIController"
-      time_steps: 56
+      time_steps: 30
       model_dt: 0.05
-      batch_size: 2000
+      batch_size: 500
       ax_max: 3.0
       ax_min: -3.0
       ay_max: 3.0
@@ -114,7 +114,7 @@ controller_server:
       wz_max: 1.9
       iteration_count: 1
       prune_distance: 1.7
-      transform_tolerance: 0.1
+      transform_tolerance: 0.5
       temperature: 0.3
       gamma: 0.015
       motion_model: "DiffDrive"
@@ -249,6 +249,7 @@ global_costmap:
           clearing: True
           marking: True
           data_type: "LaserScan"
+          expected_update_rate: 5.0   # reduce from default
           raytrace_max_range: 3.0
           raytrace_min_range: 0.0
           obstacle_max_range: 2.5
@@ -318,7 +319,7 @@ behavior_server:
     local_frame: odom
     global_frame: map
     robot_base_frame: base_link
-    transform_tolerance: 0.1
+    transform_tolerance: 0.5
     simulate_ahead_time: 2.0
     max_rotational_vel: 1.0
     min_rotational_vel: 0.4
@@ -395,7 +396,7 @@ collision_monitor:
     cmd_vel_in_topic: "cmd_vel_smoothed"
     cmd_vel_out_topic: "cmd_vel"
     state_topic: "collision_monitor_state"
-    transform_tolerance: 0.2
+    transform_tolerance: 0.5
     source_timeout: 1.0
     base_shift_correction: True
     stop_pub_timeout: 2.0
@@ -467,7 +468,7 @@ docking_server:
       use_collision_detection: true
       costmap_topic: "local_costmap/costmap_raw"
       footprint_topic: "local_costmap/published_footprint"
-      transform_tolerance: 0.1
+      transform_tolerance: 0.5
       projection_time: 5.0
       simulation_step: 0.1
       dock_collision_threshold: 0.3
