@@ -1,7 +1,7 @@
 image: SLU_REAL.pgm
 mode: trinary
 resolution: 0.050
-origin: [-20.749, -9.948, 0]
+origin: [-14.054, -10.471, 0]
 negate: 0
 occupied_thresh: 0.65
 free_thresh: 0.196
