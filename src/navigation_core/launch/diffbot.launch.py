@@ -15,7 +15,8 @@
 
 import os
 from launch import LaunchDescription
-from launch.actions import TimerAction
+from launch.actions import TimerAction, IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 from launch.substitutions import Command
 from ament_index_python.packages import get_package_share_directory
@@ -25,6 +26,8 @@ from launch_ros.parameter_descriptions import ParameterValue
 def generate_launch_description():
 
     pkg_share = get_package_share_directory('navigation_core')
+    lidar_share = get_package_share_directory('sllidar_ros2')
+
 
     # Build robot_description from xacro
     # WHY Command + xacro: standard ROS 2 pattern for parameterized URDF.
@@ -99,6 +102,18 @@ def generate_launch_description():
         ],
     )
 
+    joystick = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([os.path.join(
+            pkg_share, 'launch', 'joystick_launch.py')]),
+        launch_arguments={'use_sim_time': 'false'}.items(),
+    )
+
+    lidar = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([os.path.join(
+            lidar_share, 'launch', 'sllidar_s3_launch.py')]),
+        launch_arguments={'frame_id': 'laser_frame'}.items(),
+    )
+
     twist_mux_params = os.path.join(pkg_share,'config','twist_mux.yaml')
     twist_mux = Node(
         package="twist_mux",
@@ -113,4 +128,6 @@ def generate_launch_description():
         diff_drive_spawner,
         joint_state_spawner,
         twist_mux,
+        joystick,
+        lidar,
     ])
