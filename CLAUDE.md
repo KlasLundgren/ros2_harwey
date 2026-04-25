@@ -4,7 +4,7 @@
 
 ```bash
 # Build
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 cd ros2_harwey-master
 colcon build --symlink-install
 source install/setup.bash
@@ -34,7 +34,7 @@ cansend can0 601#4041600000000000   # Read statusword node 1
 
 ## Architecture
 
-ROS2 Humble project for an autonomous differential-drive agricultural robot (Raspberry Pi 5, Ubuntu 22.04).
+ROS2 Jazzy project for an autonomous differential-drive agricultural robot (Raspberry Pi 5).
 
 **Packages:**
 - `navigation_core` — Main package: URDF, launch files, config, and custom `DmkeCanHwInterface` (ros2_control plugin)
