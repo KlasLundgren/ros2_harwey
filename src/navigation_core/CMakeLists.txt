@@ -23,9 +23,6 @@ find_package(hardware_interface REQUIRED)
 find_package(pluginlib REQUIRED)
 find_package(rclcpp_lifecycle REQUIRED)
 
-# Generate master.dcf and master.bin from bus.yml + EDS files
-generate_dcf(bot_bus)
-
 include_directories(
   include
   ${EIGEN3_INCLUDE_DIRS}
