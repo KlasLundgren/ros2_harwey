@@ -89,7 +89,7 @@ def main() -> None:
     # --- Build and send poses ---
     poses = waypoints_to_poses(waypoints, navigator)
     navigator.get_logger().info(f'Sending {len(poses)} waypoints to Nav2...')
-    navigator.followWaypoints(poses)
+    navigator.goThroughPoses(poses)
 
     # --- Monitor progress ---
     while not navigator.isTaskComplete():
