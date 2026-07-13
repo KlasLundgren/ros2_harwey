@@ -293,6 +293,30 @@ ros2 launch navigation_core slam_launch.py
 ros2 launch navigation_core navigation_launch.py
 ```
 
+### Teach-and-Repeat (Waypoint Recording & Path Following)
+
+**Record a path** (drive the robot manually while localized; poses are sampled from TF `map -> base_link` every `record_distance` meters and dumped to YAML on Ctrl+C):
+```bash
+python3 scripts/waypoint_recorder.py --ros-args -p record_distance:=1.0 -p output_file:=./recorded_waypoints.yaml
+```
+
+**Replay the path** (builds a single `nav_msgs/Path` from the YAML, densifies it to `interpolation_spacing` meters, and sends it to the controller server via Nav2 `FollowPath` — continuous tracking, no per-waypoint stops):
+```bash
+python3 scripts/waypoint_follower.py --ros-args -p waypoint_file:=./recorded_waypoints.yaml
+```
+
+**Multi-stage missions:** pass a comma-separated list of files to follow them in sequence — the next path is only sent after the previous one succeeds. The recommended mission layout is two recordings, which avoids closed loops and mid-path direction changes entirely:
+```bash
+# 1) backout.yaml: straight reverse out of the charging station
+# 2) field.yaml: forward field coverage, ending at the charging station
+python3 scripts/waypoint_follower.py --ros-args -p waypoint_file:=./backout.yaml,./field.yaml
+```
+
+Notes:
+- Reversing segments are supported: the MPPI controller is configured with `use_path_orientations: true` and `enforce_path_inversion: true`, so it drives backward where the recorded orientations face opposite the direction of travel (e.g. reversing out of the charging station).
+- Ctrl+C on the follower cancels the FollowPath action and stops the robot.
+- Do not end the recording within ~0.5 m of the start point of a closed loop — the controller checks "goal reached" against the path's last pose from the first cycle, so a perfectly closed loop can report success instantly without moving.
+
 ### Manual Control
 
 **Joystick teleop:**
@@ -448,7 +472,9 @@ ros2_harwey-master/
 │   └── Architecture.drawio            # System architecture diagram
 ├── scripts/
 │   ├── imuData.py                     # IMU data testing utility
-│   └── calibrateImu.py                # IMU calibration utility
+│   ├── calibrateImu.py                # IMU calibration utility
+│   ├── waypoint_recorder.py           # Teach: record poses from TF to YAML
+│   └── waypoint_follower.py           # Repeat: replay YAML path via Nav2 FollowPath
 └── src/
     ├── navigation_core/               # Main robot package
     │   ├── CMakeLists.txt

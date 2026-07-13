@@ -125,6 +125,11 @@ controller_server:
       temperature: 0.3
       gamma: 0.015
       motion_model: "DiffDrive"
+      # WHY enforce_path_inversion: the recorded teach-and-repeat path starts with
+      # a straight reverse away from the charging station, then a cusp into forward
+      # driving. This makes MPPI track the path up to the cusp (reversing), reach it,
+      # then continue forward — instead of blending across the direction change.
+      enforce_path_inversion: true
       visualize: false
       regenerate_noises: true
       TrajectoryVisualizer:
@@ -173,7 +178,11 @@ controller_server:
         trajectory_point_step: 4
         threshold_to_consider: 0.5
         offset_from_furthest: 20
-        use_path_orientations: false
+        # WHY true: recorded waypoint orientations encode driving direction
+        # (heading faces the station while reversing away from it). MPPI only
+        # reverses along those segments if it aligns to path orientations —
+        # this is the MPPI equivalent of RPP's allow_reversing.
+        use_path_orientations: true
       PathFollowCritic:
         enabled: true
         cost_power: 1
