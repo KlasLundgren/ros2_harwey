@@ -305,17 +305,20 @@ python3 scripts/waypoint_recorder.py --ros-args -p record_distance:=1.0 -p outpu
 python3 scripts/waypoint_follower.py --ros-args -p waypoint_file:=./recorded_waypoints.yaml
 ```
 
-**Multi-stage missions:** pass a comma-separated list of files to follow them in sequence — the next path is only sent after the previous one succeeds. The recommended mission layout is two recordings, which avoids closed loops and mid-path direction changes entirely:
+**Multi-stage missions:** pass a comma-separated list of files to follow them in sequence — the next path is only sent after the previous one succeeds.
+
+**Reversing out of the charging station:** use `backup_distance` instead of a recorded reverse path. Path trackers steer to correct lateral error, and localization jitter on the sand surface means there is always some error to correct — steering in reverse twists the trailer. The Nav2 `BackUp` behavior commands zero angular velocity and measures distance from odometry only, so it reverses dead straight:
 ```bash
-# 1) backout.yaml: straight reverse out of the charging station
-# 2) field.yaml: forward field coverage, ending at the charging station
-python3 scripts/waypoint_follower.py --ros-args -p waypoint_file:=./backout.yaml,./field.yaml
+# Mission: reverse straight 10 m out of the station, then follow the field path
+# (record field.yaml starting from the point ~10 m out, ending at the station)
+python3 scripts/waypoint_follower.py --ros-args \
+    -p backup_distance:=10.0 -p waypoint_file:=./field.yaml
 ```
 
 Notes:
-- Reversing segments are supported: the MPPI controller is configured with `use_path_orientations: true` and `enforce_path_inversion: true`, so it drives backward where the recorded orientations face opposite the direction of travel (e.g. reversing out of the charging station).
-- Ctrl+C on the follower cancels the FollowPath action and stops the robot.
-- Do not end the recording within ~0.5 m of the start point of a closed loop — the controller checks "goal reached" against the path's last pose from the first cycle, so a perfectly closed loop can report success instantly without moving.
+- Recorded reverse segments inside a path are also supported (MPPI is configured with `use_path_orientations: true` and `enforce_path_inversion: true`), but prefer `backup_distance` when a trailer is attached — path tracking makes small steering corrections while reversing.
+- Ctrl+C on the follower cancels the active task (backup or path) and stops the robot.
+- Do not end a recording within ~0.5 m of its start point — the controller checks "goal reached" against the path's last pose from the first cycle, so a perfectly closed loop can report success instantly without moving.
 
 ### Manual Control
 
