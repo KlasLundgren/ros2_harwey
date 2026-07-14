@@ -44,10 +44,13 @@ import signal
 import sys
 
 import rclpy
+from rclpy.duration import Duration
 from rclpy.signals import SignalHandlerOptions
+from rclpy.time import Time
 from geometry_msgs.msg import PoseStamped
 from nav_msgs.msg import Path
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
+import tf2_ros
 import yaml
 
 # WHY module-level flag + custom SIGINT handler: rclpy's default handler tears
@@ -170,6 +173,56 @@ def follow_one(navigator: BasicNavigator, path: Path, label: str) -> TaskResult:
     return navigator.getResult()
 
 
+def get_robot_pose(navigator: BasicNavigator, tf_buffer: tf2_ros.Buffer,
+                   timeout_sec: float = 5.0) -> tuple[float, float] | None:
+    """Return (x, y) of base_link in the map frame, or None if TF unavailable."""
+    deadline = navigator.get_clock().now() + Duration(seconds=timeout_sec)
+    while navigator.get_clock().now() < deadline:
+        # WHY spin_once: the TF listener only receives transforms while the
+        # node is spun; BasicNavigator has no background executor.
+        rclpy.spin_once(navigator, timeout_sec=0.1)
+        try:
+            tf = tf_buffer.lookup_transform('map', 'base_link', Time())
+            return tf.transform.translation.x, tf.transform.translation.y
+        except (
+            tf2_ros.LookupException,
+            tf2_ros.ConnectivityException,
+            tf2_ros.ExtrapolationException,
+        ):
+            continue
+    return None
+
+
+def trim_start_to_robot(waypoints: list[dict], rx: float, ry: float,
+                        search_arc: float = 10.0) -> tuple[list[dict], int, float]:
+    """Drop leading waypoints so the path starts at the waypoint nearest the robot.
+
+    WHY: MPPI only matches the robot to the path inside the local costmap
+    window (~half its width, 1.5 m here). Odometry slip in sand and AMCL
+    drift mean the robot never lands exactly on the recorded start; if the
+    gap exceeds that window the transformed plan is empty and FollowPath
+    aborts with 'Resulting plan has 0 poses in it'. The search is limited to
+    the first `search_arc` meters of the path so a coverage row passing near
+    the start point cannot swallow the mission.
+
+    Returns (trimmed waypoints, number dropped, distance robot->new start).
+    """
+    best_i = 0
+    best_d = math.hypot(waypoints[0]['x'] - rx, waypoints[0]['y'] - ry)
+    arc = 0.0
+    for i in range(1, len(waypoints)):
+        arc += math.hypot(
+            waypoints[i]['x'] - waypoints[i - 1]['x'],
+            waypoints[i]['y'] - waypoints[i - 1]['y'],
+        )
+        if arc > search_arc:
+            break
+        d = math.hypot(waypoints[i]['x'] - rx, waypoints[i]['y'] - ry)
+        if d < best_d:
+            best_i, best_d = i, d
+    return waypoints[best_i:], best_i, best_d
+
+
 def backup_straight(navigator: BasicNavigator, distance: float, speed: float) -> TaskResult:
     """Reverse straight `distance` meters via the Nav2 BackUp behavior.
 
@@ -210,6 +263,10 @@ def main() -> None:
     signal.signal(signal.SIGINT, _sigint_handler)
 
     navigator = BasicNavigator()
+
+    # TF listener for trimming each path to the robot's actual position
+    tf_buffer = tf2_ros.Buffer()
+    tf2_ros.TransformListener(tf_buffer, navigator)
 
     # Declare and read parameters
     navigator.declare_parameter('waypoint_file', './recorded_waypoints.yaml')
@@ -281,8 +338,51 @@ def main() -> None:
             mission_ok = False
             break
 
-        path = waypoints_to_path(waypoints, spacing, navigator)
         label = f'path {i + 1}/{len(missions)}'
+
+        # Start the path from wherever the robot actually is, not where the
+        # recording assumed it would be (see trim_start_to_robot docstring).
+        robot_pose = get_robot_pose(navigator, tf_buffer)
+        if robot_pose is None:
+            navigator.get_logger().warn(
+                f'[{label}] Could not get robot pose from TF — sending path untrimmed.'
+            )
+        else:
+            waypoints, dropped, gap = trim_start_to_robot(waypoints, *robot_pose)
+            if dropped:
+                navigator.get_logger().info(
+                    f'[{label}] Trimmed {dropped} leading waypoint(s); '
+                    f'path now starts {gap:.2f} m from robot.'
+                )
+            if len(waypoints) < 2:
+                navigator.get_logger().error(
+                    f'[{label}] Fewer than 2 waypoints remain after trimming — '
+                    f'robot is already near the end of this path. Aborting mission.'
+                )
+                mission_ok = False
+                break
+            # WHY a connector instead of a bigger costmap: MPPI can only match
+            # the robot to path poses inside the local costmap (~1.5 m here).
+            # A recording deliberately started ahead of the backup-end position
+            # (good practice — gives runway for the first turn) leaves a gap no
+            # amount of trimming can close. Prepending the robot's own pose,
+            # oriented toward the path start, turns the gap into a straight
+            # FORWARD lead-in segment (densified by the normal interpolation),
+            # which is trailer-safe. Cheaper than enlarging the costmap on a Pi.
+            if gap > 0.5:
+                rx, ry = robot_pose
+                bearing = math.atan2(waypoints[0]['y'] - ry, waypoints[0]['x'] - rx)
+                connector = {
+                    'x': rx, 'y': ry, 'z': 0.0, 'qx': 0.0, 'qy': 0.0,
+                    'qz': math.sin(bearing / 2.0), 'qw': math.cos(bearing / 2.0),
+                }
+                waypoints = [connector] + waypoints
+                navigator.get_logger().info(
+                    f'[{label}] Robot is {gap:.2f} m from the path start — '
+                    f'prepending a straight forward connector from the robot pose.'
+                )
+
+        path = waypoints_to_path(waypoints, spacing, navigator)
         navigator.get_logger().info(
             f'[{label}] Sending {f}: {len(path.poses)} poses '
             f'({len(waypoints)} waypoints, interpolated to {spacing} m)...'
