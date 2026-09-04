@@ -106,7 +106,7 @@ controller_server:
       plugin: "nav2_mppi_controller::MPPIController"
       time_steps: 30
       model_dt: 0.05
-      batch_size: 500
+      batch_size: 300
       ax_max: 3.0
       ax_min: -3.0
       ay_max: 3.0
