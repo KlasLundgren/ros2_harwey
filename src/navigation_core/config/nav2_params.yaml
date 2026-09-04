@@ -434,6 +434,7 @@ collision_monitor:
 
 docking_server:
   ros__parameters:
+    enable_stamped_cmd_vel: true
     controller_frequency: 50.0
     initial_perception_timeout: 5.0
     wait_charge_timeout: 5.0
