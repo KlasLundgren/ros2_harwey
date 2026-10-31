@@ -26,7 +26,7 @@ diffbot_base_controller:
     # WHY these matter: diff_drive_controller converts cmd_vel (m/s, rad/s)
     # to per-wheel rad/s using these dimensions. Wrong values = wrong odometry.
     # MEASURE THESE ON YOUR ROBOT.
-    wheel_separation: 0.994    # meters, center-to-center between wheels
+    wheel_separation: 0.97    # meters, center-to-center between wheels
     wheel_radius: 0.25       # meters, wheel radius after gearbox output
 
     # Odometry

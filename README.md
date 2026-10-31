@@ -209,7 +209,7 @@ colcon build --packages-select navigation_core
 | Parameter | Value | Description |
 |-----------|-------|-------------|
 | `update_rate` | 50 Hz | Control loop rate. Set to 50 (not 100) because SDO round-trips take ~1-2ms each, and 4 reads + 2 writes per cycle = ~8-12ms |
-| `wheel_separation` | 0.994 m | Center-to-center distance between wheels |
+| `wheel_separation` | 0.97 m | Center-to-center distance between wheels |
 | `wheel_radius` | 0.25 m | Wheel radius at gearbox output |
 | `linear.x.max_velocity` | 1.0 m/s | Conservative limit (theoretical max ~1.57 m/s) |
 | `angular.z.max_velocity` | 2.0 rad/s | Conservative limit (theoretical max ~3.16 rad/s) |

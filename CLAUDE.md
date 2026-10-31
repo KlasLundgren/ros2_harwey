@@ -134,7 +134,7 @@ ROS2 Jazzy project for an autonomous differential-drive agricultural robot (Rasp
 - **CAN bus:** 1 Mbit/s, standard frame, SDO communication (not PDO)
 - **LIDAR:** SLAMTEC S3 on `/dev/ttyUSB0`
 - **IMU:** WT901 9-axis on `/dev/ttyUSB0` (9600 baud)
-- **Wheels:** 0.994m separation, 0.25m radius
+- **Wheels:** 0.97m separation, 0.25m radius
 - **Velocity limits:** 1.0 m/s linear, 2.0 rad/s angular
 
 ## Unit Conversions (in dmke_can_hw_interface.cpp)
