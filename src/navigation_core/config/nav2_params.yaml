@@ -82,7 +82,7 @@ controller_server:
     failure_tolerance: 0.3
     progress_checker_plugins: ["progress_checker"]
     goal_checker_plugins: ["general_goal_checker"] # "precise_goal_checker"
-    controller_plugins: ["FollowPath"]
+    controller_plugins: ["FollowPath", "RPP"]
     use_realtime_priority: false
 
     # Progress checker parameters
@@ -193,6 +193,26 @@ controller_server:
       #   enabled: true
       #   twirling_cost_power: 1
       #   twirling_cost_weight: 10.0
+    # WHY RPP alongside MPPI: teach-and-repeat drives a known forward path in
+    # an open arena. Pure pursuit drives at desired_linear_vel directly instead
+    # of letting a cost balance (MPPI's gamma) pick the speed, and is far
+    # cheaper on the Pi. Selected per goal via controller_id in the follower.
+    RPP:
+      plugin: "nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController"
+      desired_linear_vel: 0.8
+      use_velocity_scaled_lookahead_dist: true
+      lookahead_time: 1.5
+      min_lookahead_dist: 0.8
+      # WHY 2.0: must stay inside the 3 m half-width of the local costmap
+      max_lookahead_dist: 2.0
+      use_regulated_linear_velocity_scaling: true
+      regulated_linear_scaling_min_radius: 1.5
+      # WHY false: harrowing runs close to the arena boards; cost scaling would slow it there
+      use_cost_regulated_linear_velocity_scaling: false
+      # WHY false: no rotate-in-place (trailer); reversing is done by the BackUp stage
+      use_rotate_to_heading: false
+      allow_reversing: false
+      approach_velocity_scaling_dist: 1.0
 
 local_costmap:
   local_costmap:

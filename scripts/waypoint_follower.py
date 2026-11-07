@@ -21,6 +21,11 @@ Parameters:
   - backup_distance: if > 0, reverse STRAIGHT this many meters (Nav2 BackUp
     behavior) before following the first path. Default 0.0 (disabled)
   - backup_speed: reverse speed in m/s for the backup stage. Default 0.2
+  - controller_id: controller plugin to follow the path with, as named in
+    controller_server's controller_plugins ('FollowPath' = MPPI, 'RPP' =
+    Regulated Pure Pursuit). Default 'FollowPath'. Must be set explicitly:
+    with more than one controller loaded, the server rejects goals that
+    name none
 
 WHY BackUp instead of a recorded reverse path: any path tracker (MPPI
 included) steers to correct lateral error, and localization jitter on the
@@ -34,6 +39,9 @@ Usage:
   # Mission: reverse straight 10 m out of the station, then cover the field:
   python3 scripts/waypoint_follower.py --ros-args \
       -p backup_distance:=10.0 -p waypoint_file:=./field.yaml
+  # Same mission, following the path with Regulated Pure Pursuit:
+  python3 scripts/waypoint_follower.py --ros-args \
+      -p backup_distance:=10.0 -p controller_id:=RPP -p waypoint_file:=./field.yaml
 
 Requires Nav2 stack to be fully active (AMCL localized, Nav2 lifecycle up).
 Ctrl+C cancels the FollowPath action so the robot stops.
@@ -144,11 +152,12 @@ def waypoints_to_path(waypoints: list[dict], spacing: float, navigator: BasicNav
     return path
 
 
-def follow_one(navigator: BasicNavigator, path: Path, label: str) -> TaskResult:
+def follow_one(navigator: BasicNavigator, path: Path, label: str,
+               controller_id: str) -> TaskResult:
     """Send one path via FollowPath and block until it finishes or is canceled."""
     global _task_started
     _task_started = True
-    navigator.followPath(path)
+    navigator.followPath(path, controller_id=controller_id)
 
     canceled = False
     try:
@@ -273,10 +282,12 @@ def main() -> None:
     navigator.declare_parameter('interpolation_spacing', 0.1)
     navigator.declare_parameter('backup_distance', 0.0)
     navigator.declare_parameter('backup_speed', 0.2)
+    navigator.declare_parameter('controller_id', 'FollowPath')
     waypoint_file: str = navigator.get_parameter('waypoint_file').value
     spacing: float = navigator.get_parameter('interpolation_spacing').value
     backup_distance: float = navigator.get_parameter('backup_distance').value
     backup_speed: float = navigator.get_parameter('backup_speed').value
+    controller_id: str = navigator.get_parameter('controller_id').value
 
     files = [f.strip() for f in waypoint_file.split(',') if f.strip()]
 
@@ -387,7 +398,7 @@ def main() -> None:
             f'[{label}] Sending {f}: {len(path.poses)} poses '
             f'({len(waypoints)} waypoints, interpolated to {spacing} m)...'
         )
-        result = follow_one(navigator, path, label)
+        result = follow_one(navigator, path, label, controller_id)
 
         if result == TaskResult.SUCCEEDED:
             navigator.get_logger().info(f'[{label}] Completed successfully.')

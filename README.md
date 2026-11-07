@@ -317,8 +317,9 @@ python3 scripts/waypoint_follower.py --ros-args \
 
 Notes:
 - Before sending each path, the follower reads the robot's actual map pose from TF, trims leading waypoints up to the nearest one (searching only the first ~10 m of the path), and — if the robot is still >0.5 m from the path start — prepends a straight forward connector segment from the robot's pose. This absorbs odometry slip from the backup stage, AMCL drift, and recordings deliberately started ahead of the backup-end position. Without it, a start gap larger than the local costmap window (~1.5 m) makes the controller abort with "Resulting plan has 0 poses in it".
-- Recorded reverse segments inside a path are also supported (MPPI is configured with `use_path_orientations: true` and `enforce_path_inversion: true`), but prefer `backup_distance` when a trailer is attached — path tracking makes small steering corrections while reversing.
+- Paths are followed forward only: reversing is done by the `backup_distance` stage. (MPPI's `use_path_orientations` and `enforce_path_inversion` are `false`; with them on, the jitter in recorded headings was read as false direction changes.)
 - Ctrl+C on the follower cancels the active task (backup or path) and stops the robot.
+- Two path controllers are loaded: `FollowPath` (MPPI, the default) and `RPP` (Regulated Pure Pursuit, drives at `desired_linear_vel` and is much cheaper on the Pi). Choose one with `-p controller_id:=RPP`. With both loaded, a FollowPath goal must name a controller, so the follower always sends one.
 - Do not end a recording within ~0.5 m of its start point — the controller checks "goal reached" against the path's last pose from the first cycle, so a perfectly closed loop can report success instantly without moving.
 
 ### Manual Control
